@@ -1,5 +1,6 @@
 package aplication;
 
+import java.util.Date;
 import java.util.List;
 
 import model.dao.DaoFactory;
@@ -18,6 +19,7 @@ public class Program {
 		Seller seller = sellerDao.findById(3);
 		System.out.println(seller);
 		
+		System.out.println();
 		System.out.println("=== Teste 2 SellerFindByDepartment =======");
 		Department dep = new Department(2, null); //colocando parametro Id para resgatar dados na tabela Department com Id.
 		List<Seller>list = sellerDao.findByDepartment(dep);
@@ -25,7 +27,7 @@ public class Program {
 		for(Seller obj : list) {
 			System.out.println(obj);
 		}
-		
+		System.out.println();
 		System.out.println("=== Teste 3 SellerFindAll =======");
 		list = sellerDao.findAll();
 		
@@ -33,6 +35,11 @@ public class Program {
 			System.out.println(obj);
 		}
 		
+		System.out.println();
+		System.out.println("=== Teste 4 Seller insert =======");
+		Seller newSeller = new Seller(null,"Greg","greg@Gmail.com", new Date(), 4000.0, dep);
 		
+		sellerDao.insert(newSeller);
+		System.out.println("Insert: " + newSeller.getId());
 	}
 }
