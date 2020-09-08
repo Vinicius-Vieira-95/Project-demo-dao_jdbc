@@ -19,12 +19,20 @@ public class Program {
 		System.out.println(seller);
 		
 		System.out.println("=== Teste 2 SellerFindByDepartment =======");
-		Department dep = new Department(2, null);
+		Department dep = new Department(2, null); //colocando parametro Id para resgatar dados na tabela Department com Id.
 		List<Seller>list = sellerDao.findByDepartment(dep);
 		
 		for(Seller obj : list) {
 			System.out.println(obj);
 		}
+		
+		System.out.println("=== Teste 3 SellerFindAll =======");
+		list = sellerDao.findAll();
+		
+		for(Seller obj : list) {
+			System.out.println(obj);
+		}
+		
+		
 	}
-
 }
