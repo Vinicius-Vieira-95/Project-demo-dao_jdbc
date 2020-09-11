@@ -29,9 +29,17 @@ public class Program2 {
 		
 		System.out.println();
 		System.out.println("======== Teste 3 Insert Dp ========");
-		Department dept = new Department(null, "Aliment");
-		departmentDao.insert(dept);
+		Department dep2 = new Department(null, "Aliment");
+		departmentDao.insert(dep2);
 		System.out.println("Insert Sucefully");
+		
+		System.out.println();
+		System.out.println("======== Teste 4 Update Dp ========");
+		Department dep3 = departmentDao.findById(2);
+		dep3.setName("Food");
+		departmentDao.update(dep3);
+		System.out.println("Update Sucefully");
+		
 		
 		
 		sc.close();
