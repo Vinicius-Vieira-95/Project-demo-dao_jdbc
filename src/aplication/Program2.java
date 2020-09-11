@@ -27,6 +27,13 @@ public class Program2 {
 			System.out.println(dp.toString());
 		}
 		
+		System.out.println();
+		System.out.println("======== Teste 3 Insert Dp ========");
+		Department dept = new Department(null, "Aliment");
+		departmentDao.insert(dept);
+		System.out.println("Insert Sucefully");
+		
+		
 		sc.close();
 	}
 
