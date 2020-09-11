@@ -46,15 +46,13 @@ public class DepartmentDaoJDBC implements DepartmentdDao {
 					obj.setId(id);
 				}
 
-			}
-			else {
+			} else {
 				throw new DbException("Unexpexted erro ! no rows affected!");
 			}
-			
+
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
-		}
-		finally {
+		} finally {
 			DB.closeStatement(st);
 		}
 
@@ -62,25 +60,21 @@ public class DepartmentDaoJDBC implements DepartmentdDao {
 
 	@Override
 	public void update(Department obj) {
-		
+
 		PreparedStatement st = null;
-		
-		//Atualizando departamento onde será trocado com no endereço do Id
+
+		// Atualizando departamento onde será trocado com no endereço do Id
 		try {
-			st = conn.prepareStatement("UPDATE department " 
-					+ " SET Name = ? " 
-					+ " WHERE Id = ? ");
-			//pegando nome e Id do departamento
+			st = conn.prepareStatement("UPDATE department " + " SET Name = ? " + " WHERE Id = ? ");
+			// pegando nome e Id do departamento
 			st.setString(1, obj.getName());
 			st.setInt(2, obj.getId());
-			
+
 			st.executeUpdate();
-			
-		}
-		catch(SQLException e) {
+
+		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
-		}
-		finally {
+		} finally {
 			DB.closeStatement(st);
 		}
 
@@ -88,8 +82,24 @@ public class DepartmentDaoJDBC implements DepartmentdDao {
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
 
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("DELETE FROM department WHERE Id= ? ");
+
+			st.setInt(1, id);
+
+			int rows = st.executeUpdate();
+
+			if (rows == 0) {
+				throw new DbException("Rows not found");
+			}
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
 	}
 
 	@Override
